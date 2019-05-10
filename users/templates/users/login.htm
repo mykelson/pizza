@@ -1,0 +1,65 @@
+{% extends "users/base.htm" %} {% load staticfiles %} {% block title %} Login {% endblock %} {% block body %}
+
+<section class="container">
+    <div class="card">
+        <h3 class="card-header">Log in</h3>
+        <div class="card-body">
+            <div>
+                {{ message }}
+            </div>
+            <form class="needs-validation" action="{% url 'login' %}" method="POST" novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="validationCustomUsername">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        </div>
+                        <input name="username" type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+                        <div class="invalid-feedback">
+                            Please provide a username.
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="validationCustom03">Password</label>
+                    <input type="password" name="password" class="form-control" id="validationCustom03" placeholder="Passwood" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid password.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Log in</button>
+                <a href="register.htm"><button class="btn btn-primary">Sign Up</button></a>
+            </form>
+        </div>
+
+    </div>
+    </div>
+</section>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{% endblock%}

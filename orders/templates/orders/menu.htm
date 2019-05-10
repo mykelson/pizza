@@ -1,0 +1,215 @@
+{% extends "orders/base.htm" %} {% load staticfiles %} {% block title %} Menu {% endblock %} {% block body %}
+
+<section>
+    <div class="menu">
+        <h1>Our Menu</h1>
+    </div>
+    <hr>
+    <div class="row">
+        <div id="list" class="list-group col-2">
+            <a class="list-group-item list-group-item-action" href="#regular_pizza">Regular pizza</a>
+            <a class="list-group-item list-group-item-action" href="#sicilian_pizza">Sicilian pizza</a>
+            <a class="list-group-item list-group-item-action" href="#topping">Toppings</a>
+            <a class="list-group-item list-group-item-action" href="#subs">Subs</a>
+            <a class="list-group-item list-group-item-action" href="#pasta">Pasta</a>
+            <a class="list-group-item list-group-item-action" href="#salad">Salad</a>
+            <a class="list-group-item list-group-item-action" href="#dinner">Dinner</a>
+        </div>
+        <div id="list_item" data-spy="scroll" data-target="#list" data-offset="0" class="scrollspy-example col-10">
+
+            <div id="regular_pizza">
+                <div class="menu_item">
+                    <h2>Regular Pizza</h2>
+                </div>
+                <div class="grid">
+                    {% for regular in regulars %}
+                    <form class="grid-item" action="">
+                        <div class="card">
+                            <h2 class="card-header item" name="item">{{ regular.item }}</h2>
+                            <div class="card-body">
+                                <h5 class="card-title">Price <span id="price" class="badge badge-light">$<span name="price" class="price"></span></h5>
+
+                                <button class="set_price btn" data-price="{{ regular.small_price }}">Small</button>
+                                <button class="set_price btn" data-price="{{ regular.large_price }}">Large</button>
+                            </div>
+                            <div>
+                                Quantity: <span><button class="btn decrease">-</button><span name="quan" class="badge badge-light quan" >0</span><button class="btn increase">+</button></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add to cart</button>
+                        </div>
+                    </form>
+                    {% endfor %}
+                </div>
+            </div>
+            <div id="sicilian_pizza">
+                <div class="menu_item">
+                    <h2>Sicilian Pizza</h2>
+                </div>
+                <div class="grid">
+                    {% for sicilian in sicilians %}
+                    <form class="grid-item" action="">
+                        <div class="card">
+                            <h2 class="card-header">{{ sicilian.item }}</h2>
+                            <div class="card-body">
+                                <h5 class="card-title">Price <span class="badge badge-light">$<span class="price"></span></h5>
+
+                                <button class="set_price btn" data-price="{{ sicilian.small_price }}">Small</button>
+                                <button class="set_price btn" data-price="{{ sicilian.large_price }}">Large</button>
+                            </div>
+                            <div>
+                                Quantity: <span><button class="btn decrease" >-</button><span class="badge badge-light quan" >0</span><button class="btn increase">+</button></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add to cart</button>
+                        </div>
+                    </form>
+                    {% endfor %}
+                </div>
+            </div>
+            <div id="topping">
+                <div class="menu_item">
+                    <h2>Toppings</h2>
+                </div>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Toppings</th>
+                        </tr>
+                    </thead>
+                    {% for topping in toppings %}
+                    <tbody>
+                        <tr>
+                            <td>{{ topping.item }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="subs">
+                <div class="menu_item">
+                    <h2>Subs</h2>
+                </div>
+                <div class="grid">
+                    {% for sub in subs %}
+                    <form class="grid-item" action="">
+                        <h1>Hello World</h1>
+                    </form>
+                    {% endfor %}
+                </div>
+            </div>
+            <div id="pasta">
+                <div class="menu_item">
+                    <h2>Pasta</h2>
+                </div>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    {% for pasta in pastas %}
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{ pasta.item }}</th>
+                            <td>${{ pasta.price }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="salad">
+                <div class="menu_item">
+                    <h2>Salads</h2>
+                </div>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    {% for salad in salads %}
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{ salad.item }}</th>
+                            <td>${{ salad.price }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="dinner">
+                <div class="menu_item">
+                    <h2>Dinner Platters</h2>
+                </div>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Small</th>
+                            <th scope="col">Large</th>
+                        </tr>
+                    </thead>
+                    {% for dinner_platter in dinner_platters %}
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{ dinner_platter.item }}</th>
+                            <td>${{ dinner_platter.small_price }}</td>
+                            <td>${{ dinner_platter.large_price }}</td>
+                        </tr>
+                    </tbody>
+
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var quantity = 0;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.set_price').forEach(button => {
+            button.onclick = function() {
+                price = button.dataset.price;
+                parent = this.parentNode;
+                parent.querySelector('.price').innerHTML = price;
+
+                return false
+            };
+        });
+
+        document.querySelectorAll('.decrease').forEach(button => {
+            button.onclick = function() {
+                if (!this.nextSibling.innerHTML)
+                    this.nextSibling.innerHTML = 0;
+
+                let quantity = this.nextSibling.innerHTML;
+                quantity--;
+
+                if (quantity < 0) {
+                    quantity = 0
+                }
+                this.nextSibling.innerHTML = quantity;
+
+                return false
+            };
+        });
+        document.querySelectorAll('.increase').forEach(button => {
+            button.onclick = function() {
+                if (!this.previousSibling.innerHTML)
+                    this.nextSibling.innerHTML = 0
+
+                let quantity = this.previousSibling.innerHTML;
+                quantity++;
+                this.previousSibling.innerHTML = quantity;
+
+                return false
+            }
+
+        });
+    });
+</script>
+
+{% endblock %}

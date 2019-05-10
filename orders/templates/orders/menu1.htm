@@ -1,0 +1,180 @@
+{% extends "orders/base.htm" %} {% load staticfiles %} {% block title %} Menu {% endblock %} {% block head %}
+<script id="regular" type="text/x-handlebars-template">
+    <h2>Regular Pizzas</h2>
+    {% for regular in regulars %}
+    <form action=" ">
+        <div class="card ">
+            <h2 class="card-header ">{{ regular.item }}</h2>
+            <div class="card-body ">
+                <h5 class="card-title ">Price <span id="price " class="badge badge-light "></span></h5>
+            </div>
+            <div>
+                <button class="set_price btn " data-price="{{ regular.small }} ">Small</button>
+                <button class="set-price btn " data-price="{{ regular.large }} ">Large</button>
+            </div>
+            <div>
+                Quantity: <span><button class="btn " onclick="decrement() ">-</button><span class="badge badge-light " id="quan ">0</span><button class="btn " onclick="increment() ">+</button></span>
+            </div>
+            <button type="submit " class="btn btn-primary ">Add to cart</button>
+        </div>
+    </form>
+    {% endfor %}
+
+</script>
+{% endblock %} {% block body %}
+
+<section>
+    <div class="menu ">
+        <h1>Our Menu</h1>
+    </div>
+    <hr>
+    <div class="row ">
+        <div id="list " class="btn-group-vertical col-2 ">
+            <button class="menu_item " data-item="regular ">Regular Pizzas</button>
+            <button class="menu_item " data-item="sicilian ">Sicilian Pizzas</button>
+            <button class="menu_item " data-item="toppings ">Toppings</button>
+            <button class="menu_item " data-item="subs ">Subs</button>
+            <button class="menu_item " data-item="pastas ">Pastas</button>
+            <button class="menu_item " data-item="salads ">Salads</button>
+            <button class="menu_item " data-item="dinner ">Dinner Platters</button>
+        </div>
+        <div id="list_item " class="col-10 ">
+
+            <div id="menu_item ">
+            </div>
+            <div id="sicilian_pizza ">
+                <div class="menu_item ">
+                    <h2>Sicilian Pizza</h2>
+                </div>
+                <table class="table ">
+                    <thead class="thead-light ">
+                        <tr>
+                            <th scope="col "></th>
+                            <th scope="col ">Small</th>
+                            <th scope="col ">Large</th>
+                        </tr>
+                    </thead>
+                    {% for sicilian in sicilians %}
+                    <tbody>
+                        <tr>
+                            <th scope="row ">{{ sicilian.item }}</th>
+                            <td>${{ sicilian.small_price }}</td>
+                            <td>${{ sicilian.large_price }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="topping ">
+                <div class="menu_item ">
+                    <h2>Toppings</h2>
+                </div>
+                <table class="table ">
+                    <thead class="thead-light ">
+                        <tr>
+                            <th scope="col ">Toppings</th>
+                        </tr>
+                    </thead>
+                    {% for topping in toppings %}
+                    <tbody>
+                        <tr>
+                            <td>{{ topping.item }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="subs ">
+                <div class="menu_item ">
+                    <h2>Subs</h2>
+                </div>
+                <table class="table ">
+                    <thead class="thead-light ">
+                        <tr>
+                            <th scope="col "></th>
+                            <th scope="col ">Small</th>
+                            <th scope="col ">Large</th>
+                        </tr>
+                    </thead>
+                    {% for sub in subs %}
+                    <tbody>
+                        <tr>
+                            <th scope="row ">{{ sub.item }}</th>
+                            <td>${{ sub.small_price }}</td>
+                            <td>${{ sub.large_price }}</td>
+                        </tr>
+                    </tbody>
+
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="pasta ">
+                <div class="menu_item ">
+                    <h2>Pasta</h2>
+                </div>
+                <table class="table ">
+                    <thead class="thead-light ">
+                        <tr>
+                            <th scope="col "></th>
+                            <th scope="col ">Price</th>
+                        </tr>
+                    </thead>
+                    {% for pasta in pastas %}
+                    <tbody>
+                        <tr>
+                            <th scope="row ">{{ pasta.item }}</th>
+                            <td>${{ pasta.price }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="salad ">
+                <div class="menu_item ">
+                    <h2>Salads</h2>
+                </div>
+                <table class="table ">
+                    <thead class="thead-light ">
+                        <tr>
+                            <th scope="col "></th>
+                            <th scope="col ">Price</th>
+                        </tr>
+                    </thead>
+                    {% for salad in salads %}
+                    <tbody>
+                        <tr>
+                            <th scope="row ">{{ salad.item }}</th>
+                            <td>${{ salad.price }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="dinner ">
+                <div class="menu_item ">
+                    <h2>Dinner Platters</h2>
+                </div>
+                <table class="table ">
+                    <thead class="thead-light ">
+                        <tr>
+                            <th scope="col "></th>
+                            <th scope="col ">Small</th>
+                            <th scope="col ">Large</th>
+                        </tr>
+                    </thead>
+                    {% for dinner_platter in dinner_platters %}
+                    <tbody>
+                        <tr>
+                            <th scope="row ">{{ dinner_platter.item }}</th>
+                            <td>${{ dinner_platter.small_price }}</td>
+                            <td>${{ dinner_platter.large_price }}</td>
+                        </tr>
+                    </tbody>
+
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

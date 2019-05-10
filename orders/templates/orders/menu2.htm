@@ -1,0 +1,82 @@
+{% extends "orders/base.htm" %} {% load staticfiles %} {% block title %} Menu {% endblock %} {% block head %}
+<script id="regular" type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+
+        document.querySelectorAll('.menu_item').forEach(button => {
+            button.onclick = () => {
+                injection = "#" + button.dataset.item
+                const template = Handlebars.compile("<h1>Hello world</h1>");
+                document.querySelector('#menu_item').innerHTML += template;
+            };
+        });
+
+    });
+</script>
+{% endblock %} {% block body %}
+
+<section>
+    <div class="menu ">
+        <h1>Our Menu</h1>
+    </div>
+    <hr>
+    <div class="row ">
+        <div id="list " class="btn-group-vertical col-2 ">
+            <button class="menu_item " data-item="regular ">Regular Pizzas</button>
+            <button class="menu_item " data-item="sicilian ">Sicilian Pizzas</button>
+            <button class="menu_item " data-item="toppings ">Toppings</button>
+            <button class="menu_item " data-item="subs ">Subs</button>
+            <button class="menu_item " data-item="pastas ">Pastas</button>
+            <button class="menu_item " data-item="salads ">Salads</button>
+            <button class="menu_item " data-item="dinner ">Dinner Platters</button>
+        </div>
+        <div id="list_item " class="col-10 ">
+
+            <div id="menu_item">
+            </div>
+            <div id="sicilian_pizza ">
+                <div class="menu_item ">
+                    <h2>Sicilian Pizza</h2>
+                </div>
+                <table class="table ">
+                    <thead class="thead-light ">
+                        <tr>
+                            <th scope="col "></th>
+                            <th scope="col ">Small</th>
+                            <th scope="col ">Large</th>
+                        </tr>
+                    </thead>
+                    {% for sicilian in sicilians %}
+                    <tbody>
+                        <tr>
+                            <th scope="row ">{{ sicilian.item }}</th>
+                            <td>${{ sicilian.small_price }}</td>
+                            <td>${{ sicilian.large_price }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="topping ">
+                <div class="menu_item ">
+                    <h2>Toppings</h2>
+                </div>
+                <table class="table ">
+                    <thead class="thead-light ">
+                        <tr>
+                            <th scope="col ">Toppings</th>
+                        </tr>
+                    </thead>
+                    {% for topping in toppings %}
+                    <tbody>
+                        <tr>
+                            <td>{{ topping.item }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

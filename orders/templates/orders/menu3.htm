@@ -1,0 +1,23 @@
+{% extends "orders/base.htm" %} {% load staticfiles %} {% block title %} Menu {% endblock %} {% block body %}
+
+<section>
+    <div class="menu">
+        <h1>Our Menu</h1>
+    </div>
+    <hr>
+    <div class="row">
+        <div id="list" class="list-group col-2">
+            <a class="list-group-item list-group-item-action" onclick="load('regulars')">Regular pizza</a>
+            <a class="list-group-item list-group-item-action" onclick="load('sicilians')">Sicilian pizza</a>
+            <a class="list-group-item list-group-item-action" onclick="load('toppings')">Toppings</a>
+            <a class="list-group-item list-group-item-action" onclick="load('subs')">Subs</a>
+            <a class="list-group-item list-group-item-action" onclick="load('pastas')">Pasta</a>
+            <a class="list-group-item list-group-item-action" onclick="load('salads')">Salad</a>
+            <a class="list-group-item list-group-item-action" onclick="load('dinners')">Dinner</a>
+        </div>
+        <div id="list_item" class="col-10">
+
+        </div>
+</section>
+
+{% endblock %}

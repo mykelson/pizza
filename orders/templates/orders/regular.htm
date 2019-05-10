@@ -1,0 +1,55 @@
+<h2>Regular Pizzas</h2>
+{% for regular in regulars %}
+<form action="">
+    <div class="card">
+        <h2 class="card-header">{{ regular.item }}</h2>
+        <div class="card-body">
+            <h5 class="card-title">Price <span id="price" class="badge badge-light"></span></h5>
+        </div>
+        <div>
+            <button class="set_price btn" data-price="{{ regular.small }}">Small</button>
+            <button class="set-price btn" data-price="{{ regular.large }}">Large</button>
+        </div>
+        <div>
+            Quantity: <span><button class="btn" onclick="decrement()">-</button><span class="badge badge-light" id="quan">0</span><button class="btn" onclick="increment()">+</button></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Add to cart</button>
+    </div>
+</form>
+{% endfor %}
+
+<script>
+    var quantity = 0;
+
+    function decrement() {
+        quantity--;
+
+        if (quantity < 0) {
+            quantity = 0
+        }
+        document.querySelector('#quan').innerHTML = quantity;
+    }
+
+    function increment() {
+        quantity++;
+        document.querySelector('#quan').innerHTML = quantity;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.set_price').forEach(button => {
+            button.onclick = () => {
+                price = "$" + button.dataset.price;
+                document.querySelector('#price').innerHTML = price;
+            };
+        });
+    });
+
+    document.querySelectorAll('.card-body').forEach(function() {
+        document.querySelectorAll('set_price').forEach(button => {
+            button.onclick = () => {
+                price = "$" + button.dataset.price;
+                this.querySelector('.price').innerHTML = price;
+            };
+        });
+    });
+</script>
